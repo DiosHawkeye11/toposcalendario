@@ -1,7 +1,6 @@
 <?php
 	require_once('conexao.php');
-	$database = new Database();
-	$db = $database->conectar();
+	$db = Database::connect();
 
 	if (isset($_POST['Event'][0]) && isset($_POST['Event'][1]) && isset($_POST['Event'][2])){
 		

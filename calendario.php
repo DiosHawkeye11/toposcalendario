@@ -30,8 +30,6 @@
 				$('#ModalEdit #titulo').val(event.title);
 				$('#ModalEdit #descricao').val(event.description);
 				$('#ModalEdit #cor').val(event.color);
-				$('#ModalEdit #convidado').val(event.fk_id_destinatario);
-				$('#ModalEdit #remetente').val(event.fk_id_remetente);
 				$('#ModalEdit #status').val(event.status);
 				$('#ModalEdit #inicio').val(event.start.format('DD-MM-YYYY HH:mm:ss'));
 				$('#ModalEdit #termino').val(event.end.format('DD-MM-YYYY HH:mm:ss'));
@@ -68,9 +66,6 @@
 						start: '<?php echo $start; ?>',
 						end: '<?php echo $end; ?>',
 						color: '<?php echo $event['cor']; ?>',
-						fk_id_destinatario: '<?php echo $event['fk_id_destinatario']; ?>',
-						fk_id_remetente: '<?php echo $event['fk_id_remetente']; ?>',
-						status:'<?php echo $event['status']; ?>',
 					},
 					<?php endforeach; ?>
 				]
@@ -97,9 +92,9 @@
 					data: {Event:Event},
 					success: function(rep) {
 							if(rep == 'OK'){
-								alert('Modificação Salva!');
+								alert('Modificación Guardar!');
 							}else{
-								alert('Falha ao salvar, tente novamente!'); 
+								alert('Error al guardar!'); 
 							}
 						}
 				});

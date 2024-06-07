@@ -1,23 +1,11 @@
 <?php
-	if(!isset($_SESSION)){
-    	session_start();
-	}
-
-	$id_user = $_SESSION['idUsuario'];
-
-	if(!isset ($_SESSION['idUsuario'])) {
-    	header('Location: login.php');
-	}
 
 	require_once('evento/action/conexao.php');
-	date_default_timezone_set('America/Sao_Paulo');
+	date_default_timezone_set('America/Mexico_City');
 
-	$database = new Database();
-	$db = $database->conectar();
+	$db = Database::connect();
 
-	$sql = "SELECT id_evento, titulo, descricao, inicio, termino, cor, fk_id_destinatario, fk_id_remetente, status FROM eventos as e
-	LEFT JOIN convites as c ON e.id_evento = c.fk_id_evento
-	Where fk_id_usuario = $id_user";
+	$sql = "SELECT id_evento, titulo, descricao, inicio, termino, cor, fk_id_estado FROM eventos as e";
 	$req = $db->prepare($sql);
 	$req->execute();
 	$events = $req->fetchAll();
@@ -27,6 +15,7 @@
 <html lang="pt-br">
 
 	<head>
+
 
     	<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -52,7 +41,16 @@
 
     	<!-- Menu Superior -->
 		<?php include ('menu/menuSuperior.php'); ?>
-   
+		<table class="center">
+		<tr>
+			<td><img src="https://toposfc.org/wp-content/uploads/2020/11/logo_toposfc.png"width="50"height="30" alt=""/></td>
+			<td id = "logo"> ToposFC</td>
+			<td><a href="../index.html" id="inicio">Admin</a></td>
+			<td><a href="index.php" class="space">Reservas</a></td>
+			<td><a href="../ligas_equipos.php" class="space">Ligas y Equipos</a></td>
+			<td><a href="../galeria.php" class="space">Galeria</a></td>
+		<td><a class="space3"></td>
+		</table>
 		<!-- Page Content -->
 		<div class="container">
 			<div class="row">
@@ -96,10 +94,29 @@
 		<!-- FullCalendar -->
 		<script src='js/moment.min.js'></script>
 		<script src='js/fullcalendar.min.js'></script>
-		<script src='locale/pt-br.js'></script>
+		<script src='locale/es.js'></script>
 		<?php include ('calendario.php'); ?>
 		
 
 	</body>
 
 </html>
+<style>
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  border: 1px solid;
+  border-radius: 30px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  font-size: 110%;
+  font-family: Verdana;
+}
+.space {
+  color: #555555;
+  text-align: center;
+  padding-left: 80px;
+  white-space: nowrap;
+}
+</style>

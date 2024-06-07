@@ -7,7 +7,7 @@
 
     require_once('./evento/action/conexao.php');
 
-    date_default_timezone_set('America/Sao_Paulo');
+    date_default_timezone_set('America/Mexico_City');
     $database = new Database();
     $db = $database->conectar();
 

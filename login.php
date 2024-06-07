@@ -70,7 +70,7 @@
                     <?php
                     if(isset($_GET['erro']) && $_GET['erro']==1) {
                         echo "<div style='text-align: center' class=\"alert alert-danger\" role=\"alert\">
-                        <b>Usuario ou senha Incorretos!</b>
+                        <b>Usuario o Contraseña Incorretos</b>
                       </div>";
                     }
                     ?>
@@ -81,7 +81,7 @@
                                 <input class="form-control" placeholder="Usuario" name="usuario" type="username" required>
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Senha" name="senha" type="password" required>
+                                <input class="form-control" placeholder="Contraseña" name="senha" type="password" required>
                             </div>
                             <input type="submit" class="btn btn-lg btn-primary btn-block" value="Login">
                         </fieldset>

@@ -1,8 +1,7 @@
 <?php
 
 	require_once('conexao.php');
-	$database = new Database();
-	$db = $database->conectar();
+	$db = Database::connect();
 
 	if (isset($_POST['delete']) && isset($_POST['id_evento'])){
 		

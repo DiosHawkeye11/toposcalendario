@@ -1,24 +1,29 @@
 <?php
-    class Database{
-        private $hostname = 'localhost';
-        private $username = 'root';
-        private $password = '';
-        private $database = 'calendario';
-        private $conexao;
+	class Database {
+		private static $dbName 					= 'topos' ;
+		private static $dbHost 					= 'localhost' ;
+		private static $dbUsername = 'alex';
+		private static $dbUserPassword 	= '12345';
 
-        public function conectar(){
-            $this->conexao = null;
-            try
-            {
-                $this->conexao = new PDO('mysql:host=' . $this->hostname . ';dbname=' . $this->database . ';charset=utf8', 
-                $this->username, $this->password);
-            }
-            catch(Exception $e)
-            {
-                die('Erro : '.$e->getMessage());
-            }
+		private static $cont  = null;
 
-            return $this->conexao;
-        }
-    }
+
+
+		public static function connect(){
+		   // One connection through whole application
+	    	if ( null == self::$cont ) {
+		    	try {
+		        	self::$cont =  new PDO( "mysql:host=".self::$dbHost.";"."dbname=".self::$dbName, self::$dbUsername, self::$dbUserPassword);
+		        }
+		        catch(PDOException $e) {
+		        	die($e->getMessage());
+		        }
+	       	}
+	       	return self::$cont;
+		}
+
+		public static function disconnect() {
+			self::$cont = null;
+		}
+	}
 ?>
